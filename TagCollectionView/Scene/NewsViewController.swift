@@ -36,7 +36,9 @@ class NewsViewController: UIViewController {
             bottom: 0,
             right: 8.0
         )
+
         collectionView.showsHorizontalScrollIndicator = false
+
         return collectionView
     }()
 
@@ -61,6 +63,8 @@ class NewsViewController: UIViewController {
 
     private var news: [News] = []
 
+    private var query = "Apple"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -69,7 +73,7 @@ class NewsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.inputs.requestNews(query: "Apple", start: 1, display: 20)
+        viewModel.inputs.requestNews(query: query, isNeedToReset: true)
     }
 }
 
@@ -99,7 +103,18 @@ extension NewsViewController: UITableViewDataSource {
 }
 
 extension NewsViewController: UITableViewDelegate {
-
+    func tableView(
+        _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath
+    ) {
+        let currentRow = indexPath.row
+        print("willDisplay Current Row: \(currentRow)")
+        guard (currentRow % viewModel.display) == viewModel.display - 3 && (currentRow / viewModel.display) == (viewModel.currentPage - 1) else {
+            return
+        }
+        viewModel.inputs.requestNews(query: query, isNeedToReset: false)
+    }
 }
 
 extension NewsViewController: UICollectionViewDataSource {
@@ -134,7 +149,7 @@ extension NewsViewController: UICollectionViewDelegate {
         didSelectItemAt indexPath: IndexPath
     ) {
         let title = tagList[indexPath.row]
-        viewModel.inputs.requestNews(query: title, start: 1, display: 20)
+        viewModel.inputs.requestNews(query: title, isNeedToReset: true)
     }
 
 }
@@ -190,7 +205,7 @@ private extension NewsViewController {
         viewModel.outputs.newsResponseSubject
             .subscribe(onNext: { [weak self] news in
                 guard let self = self else { return }
-                self.news = news.items
+                self.news = news
                 self.newsTableView.reloadData()
             })
             .disposed(by: disposeBag)
