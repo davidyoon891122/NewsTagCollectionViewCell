@@ -44,7 +44,7 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        NewsRepository().requestNews(query: "test", start: 1)
+        NewsRepository().requestNews(query: "WWDC", start: 1)
     }
 }
 
