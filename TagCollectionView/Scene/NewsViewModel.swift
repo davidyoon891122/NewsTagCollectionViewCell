@@ -9,11 +9,11 @@ import Foundation
 import RxSwift
 
 protocol NewsViewModelInput {
-    func requestNews(query: String, start: Int, display: Int)
+    func requestNews(query: String, isNeedToReset: Bool)
 }
 
 protocol NewsViewModelOutput {
-    var newsResponseSubject: PublishSubject<NewsResponseModel> { get set }
+    var newsResponseSubject: PublishSubject<[News]> { get set }
 }
 
 protocol NewsViewModelType {
@@ -28,18 +28,37 @@ final class NewsViewModel: NewsViewModelType, NewsViewModelInput, NewsViewModelO
 
     var outputs: NewsViewModelOutput { self }
 
-    var newsResponseSubject: PublishSubject<NewsResponseModel>
+    var newsResponseSubject: PublishSubject<[News]>
 
     private let disposeBag = DisposeBag()
+
+    let display = 20
+
+    var currentPage = 0
+
+    private var newsList: [News] = []
+
     init() {
         newsResponseSubject = .init()
     }
 
-    func requestNews(query: String, start: Int, display: Int) {
-        NewsRepository().requestNews(query: query, start: start)
-            .debug("requestNews")
+    func requestNews(query: String, isNeedToReset: Bool) {
+
+        if isNeedToReset {
+            currentPage = 0
+            newsList = []
+        }
+
+
+        NewsRepository().requestNews(
+            query: query,
+            start: (currentPage * display) + 1,
+            display: display
+        )
             .subscribe(onNext: { news in
-                self.newsResponseSubject.onNext(news)
+                self.newsList += news.items
+                self.currentPage += 1
+                self.newsResponseSubject.onNext(self.newsList)
             }, onError: { error in
                 print(error)
             })
