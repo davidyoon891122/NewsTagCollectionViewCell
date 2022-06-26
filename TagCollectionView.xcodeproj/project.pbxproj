@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AD49B6DD286846D9001865B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49B6DC286846D9001865B8 /* AppDelegate.swift */; };
 		AD49B6DF286846D9001865B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49B6DE286846D9001865B8 /* SceneDelegate.swift */; };
-		AD49B6E1286846D9001865B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49B6E0286846D9001865B8 /* ViewController.swift */; };
+		AD49B6E1286846D9001865B8 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49B6E0286846D9001865B8 /* NewsViewController.swift */; };
 		AD49B6E6286846DA001865B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD49B6E5286846DA001865B8 /* Assets.xcassets */; };
 		AD49B6E9286846DA001865B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD49B6E7286846DA001865B8 /* LaunchScreen.storyboard */; };
 		AD49B6F22868475C001865B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AD49B6F12868475C001865B8 /* SnapKit */; };
@@ -19,13 +19,17 @@
 		AD49B6FC2868568F001865B8 /* APIKeyInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD49B6FB2868568F001865B8 /* APIKeyInfo.plist */; };
 		AD49B6FE28685B86001865B8 /* NewsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49B6FD28685B86001865B8 /* NewsResponseModel.swift */; };
 		AD49B70028685BDD001865B8 /* NewsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49B6FF28685BDD001865B8 /* NewsRequestModel.swift */; };
+		AD49B70328685F20001865B8 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AD49B70228685F20001865B8 /* RxCocoa */; };
+		AD49B70528685F20001865B8 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = AD49B70428685F20001865B8 /* RxRelay */; };
+		AD49B70728685F20001865B8 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AD49B70628685F20001865B8 /* RxSwift */; };
+		AD49B70928685F20001865B8 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = AD49B70828685F20001865B8 /* RxTest */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AD49B6D9286846D9001865B8 /* TagCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD49B6DC286846D9001865B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD49B6DE286846D9001865B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AD49B6E0286846D9001865B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AD49B6E0286846D9001865B8 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		AD49B6E5286846DA001865B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD49B6E8286846DA001865B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD49B6EA286846DA001865B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,7 +45,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD49B70328685F20001865B8 /* RxCocoa in Frameworks */,
 				AD49B6F22868475C001865B8 /* SnapKit in Frameworks */,
+				AD49B70728685F20001865B8 /* RxSwift in Frameworks */,
+				AD49B70528685F20001865B8 /* RxRelay in Frameworks */,
+				AD49B70928685F20001865B8 /* RxTest in Frameworks */,
 				AD49B6F8286850B6001865B8 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,7 +90,7 @@
 		AD49B6F328684793001865B8 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				AD49B6E0286846D9001865B8 /* ViewController.swift */,
+				AD49B6E0286846D9001865B8 /* NewsViewController.swift */,
 				AD49B6F428684B19001865B8 /* TagCollectionViewCell.swift */,
 				AD49B6F9286852CC001865B8 /* NewsRepository.swift */,
 				AD49B6FD28685B86001865B8 /* NewsResponseModel.swift */,
@@ -110,6 +118,10 @@
 			packageProductDependencies = (
 				AD49B6F12868475C001865B8 /* SnapKit */,
 				AD49B6F7286850B6001865B8 /* Alamofire */,
+				AD49B70228685F20001865B8 /* RxCocoa */,
+				AD49B70428685F20001865B8 /* RxRelay */,
+				AD49B70628685F20001865B8 /* RxSwift */,
+				AD49B70828685F20001865B8 /* RxTest */,
 			);
 			productName = TagCollectionView;
 			productReference = AD49B6D9286846D9001865B8 /* TagCollectionView.app */;
@@ -142,6 +154,7 @@
 			packageReferences = (
 				AD49B6F02868475C001865B8 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				AD49B6F6286850B6001865B8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				AD49B70128685F20001865B8 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = AD49B6DA286846D9001865B8 /* Products */;
 			projectDirPath = "";
@@ -171,7 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD49B6FE28685B86001865B8 /* NewsResponseModel.swift in Sources */,
-				AD49B6E1286846D9001865B8 /* ViewController.swift in Sources */,
+				AD49B6E1286846D9001865B8 /* NewsViewController.swift in Sources */,
 				AD49B6F528684B19001865B8 /* TagCollectionViewCell.swift in Sources */,
 				AD49B6DD286846D9001865B8 /* AppDelegate.swift in Sources */,
 				AD49B6DF286846D9001865B8 /* SceneDelegate.swift in Sources */,
@@ -404,6 +417,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		AD49B70128685F20001865B8 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -416,6 +437,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AD49B6F6286850B6001865B8 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		AD49B70228685F20001865B8 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD49B70128685F20001865B8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		AD49B70428685F20001865B8 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD49B70128685F20001865B8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		AD49B70628685F20001865B8 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD49B70128685F20001865B8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		AD49B70828685F20001865B8 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD49B70128685F20001865B8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NewsViewController.swift
 //  TagCollectionView
 //
 //  Created by David Yoon on 2022/06/26.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class NewsViewController: UIViewController {
     private lazy var topView: UIView = {
         let view = UIView()
         view.backgroundColor = .secondarySystemBackground
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension NewsViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -74,7 +74,7 @@ extension ViewController: UICollectionViewDataSource {
 
 }
 
-extension ViewController: UICollectionViewDelegate {
+extension NewsViewController: UICollectionViewDelegate {
     func collectionView(
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
@@ -86,7 +86,7 @@ extension ViewController: UICollectionViewDelegate {
 
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension NewsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -103,7 +103,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 }
 
 
-private extension ViewController {
+private extension NewsViewController {
     func setupView() {
         view.backgroundColor = .systemBackground
         [
