@@ -4,6 +4,7 @@
 //
 //  Created by David Yoon on 2022/06/26.
 //
+
 import UIKit
 import SnapKit
 
@@ -28,7 +29,12 @@ class ViewController: UIViewController {
             TagCollectionViewCell.self,
             forCellWithReuseIdentifier: TagCollectionViewCell.identifier
         )
-        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 8.0, bottom: 0, right: 8.0)
+        collectionView.contentInset = UIEdgeInsets(
+            top: 0.0,
+            left: 8.0,
+            bottom: 0,
+            right: 8.0
+        )
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
@@ -38,6 +44,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        NewsRepository().requestNews(query: "test", start: 1)
     }
 }
 
@@ -64,6 +71,18 @@ extension ViewController: UICollectionViewDataSource {
         return cell
     }
 
+
+}
+
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        let title = tagList[indexPath.row]
+
+        print("Selecte item: \(title)")
+    }
 
 }
 
