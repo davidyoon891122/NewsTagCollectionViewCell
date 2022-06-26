@@ -14,6 +14,7 @@
 		AD49B6E9286846DA001865B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD49B6E7286846DA001865B8 /* LaunchScreen.storyboard */; };
 		AD49B6F22868475C001865B8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AD49B6F12868475C001865B8 /* SnapKit */; };
 		AD49B6F528684B19001865B8 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49B6F428684B19001865B8 /* TagCollectionViewCell.swift */; };
+		AD49B6F8286850B6001865B8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AD49B6F7286850B6001865B8 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD49B6F22868475C001865B8 /* SnapKit in Frameworks */,
+				AD49B6F8286850B6001865B8 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +97,7 @@
 			name = TagCollectionView;
 			packageProductDependencies = (
 				AD49B6F12868475C001865B8 /* SnapKit */,
+				AD49B6F7286850B6001865B8 /* Alamofire */,
 			);
 			productName = TagCollectionView;
 			productReference = AD49B6D9286846D9001865B8 /* TagCollectionView.app */;
@@ -126,6 +129,7 @@
 			mainGroup = AD49B6D0286846D9001865B8;
 			packageReferences = (
 				AD49B6F02868475C001865B8 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				AD49B6F6286850B6001865B8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = AD49B6DA286846D9001865B8 /* Products */;
 			projectDirPath = "";
@@ -376,6 +380,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		AD49B6F6286850B6001865B8 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -383,6 +395,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AD49B6F02868475C001865B8 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		AD49B6F7286850B6001865B8 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD49B6F6286850B6001865B8 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
