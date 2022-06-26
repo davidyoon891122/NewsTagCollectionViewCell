@@ -43,6 +43,7 @@
 		AD49B71528686066001865B8 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		AD49B71728688909001865B8 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		AD49B71928689B10001865B8 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		AD49B71B28689C75001865B8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +90,7 @@
 				AD49B6EA286846DA001865B8 /* Info.plist */,
 				AD49B6FB2868568F001865B8 /* APIKeyInfo.plist */,
 				AD49B71928689B10001865B8 /* Extension+String.swift */,
+				AD49B71B28689C75001865B8 /* README.md */,
 			);
 			path = TagCollectionView;
 			sourceTree = "<group>";
