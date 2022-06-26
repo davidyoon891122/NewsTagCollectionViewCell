@@ -18,10 +18,16 @@ class ViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
 
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: flowLayout
+        )
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(
+            TagCollectionViewCell.self,
+            forCellWithReuseIdentifier: TagCollectionViewCell.identifier
+        )
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
@@ -46,8 +52,14 @@ extension ViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .red
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: TagCollectionViewCell.identifier,
+            for: indexPath
+        ) as? TagCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let title = tagList[indexPath.row]
+        cell.setupCell(title: title)
         return cell
     }
 
@@ -60,7 +72,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: 70.0, height: collectionView.frame.height)
+        let label = UILabel()
+        label.text = tagList[indexPath.row]
+        label.font = .systemFont(ofSize: 14.0)
+        label.sizeToFit()
+
+        let size = label.frame.size
+
+        return CGSize(width: size.width + 16, height: collectionView.frame.height - 10)
     }
 }
 
