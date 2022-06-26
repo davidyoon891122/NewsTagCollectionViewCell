@@ -23,6 +23,7 @@
 		AD49B71228686012001865B8 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = AD49B71128686012001865B8 /* RxRelay */; };
 		AD49B71428686012001865B8 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AD49B71328686012001865B8 /* RxSwift */; };
 		AD49B71628686066001865B8 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49B71528686066001865B8 /* NewsViewModel.swift */; };
+		AD49B71828688909001865B8 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD49B71728688909001865B8 /* NewsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		AD49B6FD28685B86001865B8 /* NewsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponseModel.swift; sourceTree = "<group>"; };
 		AD49B6FF28685BDD001865B8 /* NewsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRequestModel.swift; sourceTree = "<group>"; };
 		AD49B71528686066001865B8 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		AD49B71728688909001865B8 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				AD49B6E0286846D9001865B8 /* NewsViewController.swift */,
 				AD49B6F428684B19001865B8 /* TagCollectionViewCell.swift */,
 				AD49B71528686066001865B8 /* NewsViewModel.swift */,
+				AD49B71728688909001865B8 /* NewsTableViewCell.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				AD49B70028685BDD001865B8 /* NewsRequestModel.swift in Sources */,
 				AD49B6FA286852CC001865B8 /* NewsRepository.swift in Sources */,
 				AD49B71628686066001865B8 /* NewsViewModel.swift in Sources */,
+				AD49B71828688909001865B8 /* NewsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

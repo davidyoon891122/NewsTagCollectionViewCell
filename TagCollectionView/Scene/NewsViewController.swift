@@ -45,13 +45,15 @@ class NewsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(
-            UITableViewCell.self,
-            forCellReuseIdentifier: "cell"
+            NewsTableViewCell.self,
+            forCellReuseIdentifier: NewsTableViewCell.identifier
         )
         return tableView
     }()
 
-    private let tagList = ["WWDC", "Apple", "iPhone", "개발자", "판교", "리뉴얼 앱", "한국투자증권", "알고리즘"]
+    private let tagList = [
+        "WWDC", "Apple", "iPhone", "개발자", "판교", "리뉴얼 앱", "한국투자증권", "알고리즘"
+    ]
 
     private let viewModel = NewsViewModel()
 
@@ -83,12 +85,15 @@ extension NewsViewController: UITableViewDataSource {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: "cell",
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: NewsTableViewCell.identifier,
             for: indexPath
-        )
+        ) as? NewsTableViewCell else
+        {
+            return UITableViewCell()
+        }
         let item = news[indexPath.row]
-        cell.textLabel?.text = item.title
+        cell.setupCell(title: item.title, pubDate: item.pubDate)
         return cell
     }
 }
