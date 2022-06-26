@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class NewsViewController: UIViewController {
     private lazy var topView: UIView = {
@@ -39,13 +40,61 @@ class NewsViewController: UIViewController {
         return collectionView
     }()
 
+    private lazy var newsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(
+            UITableViewCell.self,
+            forCellReuseIdentifier: "cell"
+        )
+        return tableView
+    }()
+
     private let tagList = ["WWDC", "Apple", "iPhone", "개발자", "판교", "리뉴얼 앱", "한국투자증권", "알고리즘"]
+
+    private let viewModel = NewsViewModel()
+
+    private let disposeBag = DisposeBag()
+
+    private var news: [News] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        NewsRepository().requestNews(query: "WWDC", start: 1)
+        bindViewModel()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.inputs.requestNews(query: "Apple", start: 1, display: 20)
+    }
+}
+
+extension NewsViewController: UITableViewDataSource {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
+        return news.count
+    }
+
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "cell",
+            for: indexPath
+        )
+        let item = news[indexPath.row]
+        cell.textLabel?.text = item.title
+        return cell
+    }
+}
+
+extension NewsViewController: UITableViewDelegate {
+
 }
 
 extension NewsViewController: UICollectionViewDataSource {
@@ -80,8 +129,7 @@ extension NewsViewController: UICollectionViewDelegate {
         didSelectItemAt indexPath: IndexPath
     ) {
         let title = tagList[indexPath.row]
-
-        print("Selecte item: \(title)")
+        viewModel.inputs.requestNews(query: title, start: 1, display: 20)
     }
 
 }
@@ -108,7 +156,8 @@ private extension NewsViewController {
         view.backgroundColor = .systemBackground
         [
             topView,
-            collectionView
+            collectionView,
+            newsTableView
         ]
             .forEach {
                 view.addSubview($0)
@@ -124,6 +173,22 @@ private extension NewsViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(50.0)
         }
+
+        newsTableView.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+
+    }
+
+    func bindViewModel() {
+        viewModel.outputs.newsResponseSubject
+            .subscribe(onNext: { [weak self] news in
+                guard let self = self else { return }
+                self.news = news.items
+                self.newsTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
 }
 

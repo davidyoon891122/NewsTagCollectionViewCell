@@ -15,6 +15,7 @@ final class TagCollectionViewCell: UICollectionViewCell {
     private lazy var tagTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14.0)
+        label.textColor = .blue
         return label
     }()
 
