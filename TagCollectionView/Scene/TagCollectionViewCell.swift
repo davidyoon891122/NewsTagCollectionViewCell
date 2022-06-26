@@ -26,7 +26,9 @@ final class TagCollectionViewCell: UICollectionViewCell {
 
 private extension TagCollectionViewCell {
     func setupViews() {
-        backgroundColor = .lightGray
+        contentView.backgroundColor = .lightGray
+        contentView.layer.cornerRadius = 10
+        contentView.layer.masksToBounds = true
 
         [
             tagTitleLabel

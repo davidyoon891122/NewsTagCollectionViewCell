@@ -28,6 +28,7 @@ class ViewController: UIViewController {
             TagCollectionViewCell.self,
             forCellWithReuseIdentifier: TagCollectionViewCell.identifier
         )
+        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 8.0, bottom: 0, right: 8.0)
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
@@ -78,7 +79,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         label.sizeToFit()
 
         let size = label.frame.size
-
         return CGSize(width: size.width + 16, height: collectionView.frame.height - 10)
     }
 }
