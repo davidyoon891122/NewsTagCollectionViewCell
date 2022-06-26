@@ -27,7 +27,7 @@ final class NewsTableViewCell: UITableViewCell {
 
     func setupCell(title: String, pubDate: String) {
         setupViews()
-        newsTitleLabel.text = title
+        newsTitleLabel.text = title.htmlToString
         pubDateLabel.text = pubDate
     }
 }
