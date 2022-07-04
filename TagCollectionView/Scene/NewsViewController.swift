@@ -65,6 +65,8 @@ class NewsViewController: UIViewController {
 
     private var query = "Apple"
 
+    private lazy var currentCollectionViewX = collectionView.frame.origin.x
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -74,6 +76,18 @@ class NewsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.inputs.requestNews(query: query, isNeedToReset: true)
+        //startTimer()
+
+        let collectionViewMaxWidth = collectionView.frame.width
+        print("MaxWidth: \(collectionViewMaxWidth)")
+    }
+
+    override func viewDidLayoutSubviews() {
+        collectionView.scrollToItem(
+            at: IndexPath(row: tagList.count, section: 0),
+            at: .centeredHorizontally,
+            animated: false
+        )
     }
 }
 
@@ -122,7 +136,7 @@ extension NewsViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return tagList.count
+        return tagList.count * 3
     }
 
     func collectionView(
@@ -135,8 +149,13 @@ extension NewsViewController: UICollectionViewDataSource {
         ) as? TagCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let title = tagList[indexPath.row]
+        let title = tagList[indexPath.row % tagList.count]
         cell.setupCell(title: title)
+
+        if indexPath.row == tagList.count {
+            btnScroll()
+        }
+
         return cell
     }
 
@@ -148,8 +167,12 @@ extension NewsViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        let title = tagList[indexPath.row]
+        let title = tagList[indexPath.row % tagList.count]
         viewModel.inputs.requestNews(query: title, isNeedToReset: true)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("scrollView didEndDecelerating")
     }
 
 }
@@ -161,7 +184,7 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         let label = UILabel()
-        label.text = tagList[indexPath.row]
+        label.text = tagList[indexPath.item % tagList.count]
         label.font = .systemFont(ofSize: 14.0)
         label.sizeToFit()
 
@@ -209,6 +232,35 @@ private extension NewsViewController {
                 self.newsTableView.reloadData()
             })
             .disposed(by: disposeBag)
+    }
+
+    func startTimer() {
+        let _ = Timer.scheduledTimer(
+            timeInterval: 0.100,
+            target: self,
+            selector: #selector(scrollAutomatically),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+
+    @objc func scrollAutomatically(_ timer1: Timer) {
+        collectionView.setContentOffset(CGPoint(x: currentCollectionViewX , y: 0), animated: true)
+        let collectionViewContentMaxWidth = collectionView.contentSize.width
+        let collectionViewMaxWidth = collectionView.frame.width
+        print("MaxWidth: \(collectionViewContentMaxWidth), currentWidth: \(collectionViewMaxWidth)")
+        if currentCollectionViewX < collectionViewContentMaxWidth - collectionViewMaxWidth {
+            currentCollectionViewX += 1.0
+        } else {
+            print("End Moving")
+            currentCollectionViewX = 0
+        }
+
+    }
+
+    func btnScroll() {
+        print("btnScroll")
+        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 }
 
